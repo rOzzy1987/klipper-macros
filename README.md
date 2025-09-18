@@ -204,6 +204,16 @@ gcode: # This line is required by Klipper.
 # to your Z endstop or probe offset.
 #  ADJUST_SURFACE_OFFSETS
 
+# # Hook running before homing Z. Useful when specific things need to be done
+# # before Z homing
+# # This sample moves T1 toolhead out of the way so T0 can move to the safe_z_home
+# # position 
+# [gcode_macro _before_z_home]
+# gcode:
+#   T1 
+#   PARK
+#   T0
+
 # This line includes all the standard macros.
 [include klipper-macros/*.cfg]
 # Uncomment to include features that require specific hardware support.
