@@ -197,6 +197,11 @@ modifications are likely to break things in very unexpected ways.
 #  {'name' : 'ABS',  'extruder' : 245.0, 'bed' : 110.0, 'chamber' : 60}]
 # Length of filament (in millimeters) to purge at print start.
 #variable_start_purge_length: 30 # This value works for most setups.
+# Homing sequence ('xyz' or 'xy-z')
+# 'xy-z' opens the possibility to include a gcode hook '_BEFORE_Z_HOME'
+# to run before homing the Z axis
+#variable_homing_sequence: 'xyz'
+
 gcode: # This line is required by Klipper.
 # Any code you put here will run at klipper startup, after the initialization
 # for these macros. For example, you could uncomment the following line to
@@ -204,8 +209,9 @@ gcode: # This line is required by Klipper.
 # to your Z endstop or probe offset.
 #  ADJUST_SURFACE_OFFSETS
 
-# # Hook running before homing Z. Useful when specific things need to be done
-# # before Z homing
+# # Hook running before homing Z. 
+# # Used only if variable_homing_sequence is set to 'xy-z'
+# # Useful when specific things need to be done before Z homing
 # # This sample moves T1 toolhead out of the way so T0 can move to the safe_z_home
 # # position 
 # [gcode_macro _before_z_home]
@@ -213,6 +219,7 @@ gcode: # This line is required by Klipper.
 #   T1 
 #   PARK
 #   T0
+
 
 # This line includes all the standard macros.
 [include klipper-macros/*.cfg]
